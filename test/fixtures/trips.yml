@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  destination: MyString
+  start_date: 2014-04-28 23:11:09
+  end_date: 2014-04-28 23:11:09
+  fee: 1
+  owner_id: 1
+
+two:
+  destination: MyString
+  start_date: 2014-04-28 23:11:09
+  end_date: 2014-04-28 23:11:09
+  fee: 1
+  owner_id: 1
