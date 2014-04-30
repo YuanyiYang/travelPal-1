@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140429233855) do
+ActiveRecord::Schema.define(version: 20140430000938) do
 
   create_table "trips", force: true do |t|
     t.string   "destination"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140429233855) do
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "password"
+    t.string   "password_digest"
     t.string   "name"
     t.boolean  "gender"
     t.integer  "age"
