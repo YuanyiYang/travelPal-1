@@ -1,17 +1,17 @@
 class Api::TripsController < ApplicationController
     def index
+        #@user = current_user
         @user = User.take
         @trips = @user.trips_users
-        #@trips = @user.trips_owned
         render json: @trips, root:"data", meta:{status: 200, msg:"OK"}
-        #@trip = Trip.take
+        #@trips = @user.trips_owned
         #@user = @trip.owner
-        #render json: @user
     end
 
     def create
         @trip = Trip.new(trip_params)
-        @trip.owner_id = current_user.id
+        #@trip.owner_id = current_user.id
+        @trip.owner_id = 2
         if @trip.save
           render json: {meta:{status: 200, msg:"OK"}}
         else    
@@ -25,7 +25,7 @@ class Api::TripsController < ApplicationController
 
     def update
         @trip = Trip.find(params[:id])
-        if @trip.update(trip_params)
+        if @trip.update_attributes(trip_params)
           render json: {meta:{status: 200, msg:"OK"}}
         else
           render json: {meta:{status: 404, msg:"Update failed"}}
@@ -43,6 +43,6 @@ class Api::TripsController < ApplicationController
 
     private
       def trip_params
-          params(:trip).permit(:destination, :start_date, :end_date, :fee)
+        params.require(:trip).permit(:destination, :start_date, :end_date, :fee)
       end
 end
