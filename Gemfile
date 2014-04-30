@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem "active_model_serializers"
-
+gem 'active_model_serializers'
+gem 'bcrypt','~>3.1.7'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 
