@@ -1,7 +1,9 @@
 class Api::TripsController < ApplicationController
+    skip_before_filter :verify_authenticity_token
+
     def index
-        #@user = current_user
-        @user = User.take
+        @user = current_user
+        #@user = User.take
         @trips = @user.trips_users
         render json: @trips, root:"data", meta:{status: 200, msg:"OK"}
         #@trips = @user.trips_owned
@@ -10,8 +12,7 @@ class Api::TripsController < ApplicationController
 
     def create
         @trip = Trip.new(trip_params)
-        #@trip.owner_id = current_user.id
-        @trip.owner_id = 2
+        @trip.owner_id = current_user.id
         if @trip.save
           render json: {meta:{status: 200, msg:"OK"}}
         else    

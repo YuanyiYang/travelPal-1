@@ -1,4 +1,6 @@
 class Api::SessionsController < ApplicationController
+  skip_before_filter :verify_authenticity_token
+
   def create
     user = User.find_by(email:params[:sessions][:email].downcase)
     if user && user.authenticate(params[:sessions][:password])
