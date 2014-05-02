@@ -5,7 +5,7 @@ class Api::UsersController < ApplicationController
       @user = User.new(user_params)
       if @user.save
         sign_in @user
-        render json: {meta:{status: 200, msg:"OK"},data:{remember_token:cookies[:remember_token]}}
+        render json: {meta:{status: 200, msg:"OK"}}
       else
         render json: {meta:{status: 404, msg:"register failed"}}
       end
