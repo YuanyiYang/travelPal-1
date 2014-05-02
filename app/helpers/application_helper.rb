@@ -20,4 +20,8 @@ module ApplicationHelper
         self.current_user=nil
         cookies.delete(:remember_token)
     end
+
+    def is_logged_in
+        !(cookies[:remember_token].presence).nil?
+    end
 end
