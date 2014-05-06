@@ -1,8 +1,12 @@
 TravelPal::Application.routes.draw do
     namespace :api, defaults: {format: :json} do
-        resources :trips, only: [:index, :create, :show, :update, :destroy]
-        resources :users, only: [:create]
-        resources :sessions, only: [:create, :destroy]
+        resources :trips, only: [:index, :create, :show, :update, :destroy, :options]
+        resources :users, only: [:create, :options]
+        resources :sessions, only: [:create, :destroy, :options]
+        match 'trips', to: 'trips#index', via: [:options]
+        match '/signup', to: 'users#index', via: [:options]
+        match '/signin', to: 'sessions#index', via: [:options]
+        match '/signout', to: 'sessions#index', via: [:options]
         match '/signup', to:'users#create', via:'post'
         match '/signin', to:'sessions#create', via:'post'
         match '/signout', to:'sessions#destroy', via:'delete'

@@ -1,11 +1,13 @@
 class Api::UsersController < ApplicationController
-    skip_before_filter :verify_authenticity_token
+    def index
+    end
 
     def create
-      @user = User.new(user_params)
-      if @user.save
-        sign_in @user
-        render json: {meta:{status: 200, msg:"OK"}}
+      user = User.new(user_params)
+      remember_token = User.new_remember_token
+      user.remember_token = remember_token
+      if user.save
+        render json: {meta:{status: 200, msg:"OK"}, data:{token: remember_token}}
       else
         render json: {meta:{status: 404, msg:"register failed"}}
       end

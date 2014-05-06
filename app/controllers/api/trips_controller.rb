@@ -1,9 +1,7 @@
 class Api::TripsController < ApplicationController
-    skip_before_filter :verify_authenticity_token
-
     def index
-        if is_logged_in
-          @user = current_user
+        @user = login_user params[:token]
+        if !@user.nil?
           @trips = @user.trips_users
           render json: @trips, root:"data", meta:{status: 200, msg:"OK"}
         else
@@ -14,9 +12,10 @@ class Api::TripsController < ApplicationController
     end
 
     def create
-        if is_logged_in
+        @user = login_user params[:token]
+        if !@user.nil?
             @trip = Trip.new(trip_params)
-            @trip.owner_id = current_user.id
+            @trip.owner_id = @user.id
             if @trip.save
                 TripsUser.create(user_id: @trip.owner_id, trip_id: @trip.id, status:true)  
                 render json: {meta:{status: 200, msg:"OK"}}
@@ -29,7 +28,8 @@ class Api::TripsController < ApplicationController
     end
 
     def show
-        if is_logged_in
+        @user = login_user params[:token]
+        if !@user.nil?
             render json: Trip.find(params[:id]), root:"data", meta:{status: 200, msg:"OK"}
         else
             render json: {meta:{status: 401, msg:"user not logged in"}}
@@ -37,7 +37,8 @@ class Api::TripsController < ApplicationController
     end
 
     def update
-        if is_logged_in
+        @user = login_user params[:token]
+        if !@user.nil?
             @trip = Trip.find(params[:id])
             if @trip.update_attributes(trip_params)
                 render json: {meta:{status: 200, msg:"OK"}}
@@ -50,7 +51,8 @@ class Api::TripsController < ApplicationController
     end
 
     def destroy
-        if is_logged_in
+        @user = login_user params[:token]
+        if !@user.nil?
             @trip = Trip.find(params[:id])
             if @trip.destroy
                 render json: {meta:{status: 200, msg:"OK"}}
