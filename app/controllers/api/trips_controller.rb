@@ -2,7 +2,7 @@ class Api::TripsController < ApplicationController
     def index
         @user = login_user params[:token]
         if !@user.nil?
-          @trips = @user.trips_users
+          @trips = Trip.all
           render json: @trips, root:"data", meta:{status: 200, msg:"OK"}
         else
           render json: {meta:{status: 401, msg:"user not logged in"}}
