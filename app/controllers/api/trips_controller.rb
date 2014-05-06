@@ -2,15 +2,9 @@ class Api::TripsController < ApplicationController
     skip_before_filter :verify_authenticity_token
 
     def index
-        if is_logged_in
-          @user = current_user
-          @trips = @user.trips_users
-          render json: @trips, root:"data", meta:{status: 200, msg:"OK"}
-        else
-          render json: {meta:{status: 401, msg:"user not logged in"}}
-        end
-          #@trips = @user.trips_owned
-          #@user = @trip.owner
+        @trips = Trip.find_by()
+        #@trips = @user.trips_owned
+        #@user = @trip.owner
     end
 
     def create
