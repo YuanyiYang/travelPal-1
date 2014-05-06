@@ -95,12 +95,12 @@ api/signin/ POST
 
 ###### parameters
 
--   sessions : {email:string, password:string}
+-   session : {email:string, password:string}
 
 ###### sample parameters
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{"sessions": {"email": "yuanyi@gmail.com", "password": "1234" } }
+{"session": {"email": "yuanyi@gmail.com", "password": "1234" } }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ###### Sample Response

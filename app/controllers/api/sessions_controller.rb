@@ -3,8 +3,8 @@ class Api::SessionsController < ApplicationController
   end
 
   def create
-    user = User.find_by(email:params[:sessions][:email].downcase)
-    if user && user.authenticate(params[:sessions][:password])
+    user = User.find_by(email:params[:session][:email].downcase)
+    if user && user.authenticate(params[:session][:password])
         remember_token = User.new_remember_token
         user.update_attribute(:remember_token, remember_token)
         render json: {meta:{status: 200, msg:"OK"}, data:{token: remember_token}}
