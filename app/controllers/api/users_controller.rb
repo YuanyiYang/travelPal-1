@@ -7,7 +7,7 @@ class Api::UsersController < ApplicationController
       remember_token = User.new_remember_token
       user.remember_token = remember_token
       if user.save
-        render json: {meta:{status: 200, msg:"OK"}, data:{token: remember_token}}
+        render json: {meta:{status: 200, msg:"OK"}, data:{id: user.id, token: remember_token}}
       else
         render json: {meta:{status: 404, msg:"register failed"}}
       end

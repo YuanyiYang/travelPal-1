@@ -2,8 +2,9 @@ class Api::TripOwnerController < ApplicationController
     skip_before_filter :verify_authenticity_token
 
     def update
-        if is_logged_in
-            if TripsUser.update_attributes(status:true)
+        user = login_user params[:token]
+        if !user.nil?
+            if ActiveRecord::Base.connection.execute('UPDATE trips_users SET status="t" WHERE trip_id = ' + params[:trip_id] + ' and user_id =' + params[:id])
                 render json: {meta: {status: 200, msg:"OK"}}
             else
                 render json: {meta: {status: 404, msg:"application approval failed"}}
@@ -14,16 +15,15 @@ class Api::TripOwnerController < ApplicationController
     end
 
     def destroy
-        if is_logged_in
-            @trips_user = TripsUser.find_by(user_id: params[:id] , trip_id: params[:trip_id])
-            if @trips_user.destroy
+        user = login_user params[:token]
+        if !user.nil?
+            if TripsUser.delete_all(["user_id = ? AND trip_id = ?", user.id, params[:id]])
                 render json: {meta: {status: 200, msg:"OK"}}
             else
-                render json: {meta: {status: 404, msg:"quit trip failed"}}
+                render json: {meta: {status: 404, msg:"application decline failed"}}
             end
         else
             render json: {meta:{status: 401, msg:"user not logged in"}}
         end
     end
-
 end

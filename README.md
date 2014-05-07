@@ -78,6 +78,7 @@ api/signup/ POST
         "msg": "OK"
     },
     "data": {
+        "id":2,
         "token":"94ZcE8Otc1Ed_j_85rJ_mw"
     }
 }
@@ -112,6 +113,7 @@ api/signin/ POST
         "msg": "OK"
     },
     "data": {
+        "id":2,
         "token":"94ZcE8Otc1Ed_j_85rJ_mw"
     }
 }
@@ -157,18 +159,24 @@ Get the list of trips information by keyword the users specified. Only list the 
 ###### path
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-api/trips/ GET
+api/trips/search POST
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ###### parameters
 
--   keyword
+-   keywords
 
 -   token
 
 ###### sample parameters
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{
+    "keywords": {
+        "destination": "Alaska"
+    },
+    "token":"DPLtSPHlqr5w5wLlQ3-17Q"
+}
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ###### Sample Response
@@ -177,32 +185,68 @@ api/trips/ GET
 {
     "data": [
         {
-            "id": 4,
-            "destination": "Florida",
-            "start_date": "2014-12-10T00:00:00.000Z",
-            "end_date": "2014-12-16T00:00:00.000Z",
-            "fee": 1000,
-            "owner_id": 2
-            "owner": 
-            {
-                "email": "yuany11i@gmail.com",
-                "id": 2,
-                "name": "Yuanyi"
-            }
+            "id": 1,
+            "destination": "Earth",
+            "start_date": "2014-04-29T04:09:52.422Z",
+            "end_date": "2014-04-29T04:09:52.422Z",
+            "fee": 200,
+            "owner": {
+                "id": 20,
+                "name": "Yiran Mao",
+                "email": "ym731@nyu.edu",
+                "college": "NYU",
+                "age": 26,
+                "gender": true,
+                "major": "MSCS"
+            },
+            "participants": [
+                {
+                    "user_id": 20,
+                    "trip_id": 1,
+                    "status": true,
+                    "user": {
+                        "id": 20,
+                        "name": "Yiran Mao",
+                        "email": "ym731@nyu.edu",
+                        "college": "NYU",
+                        "age": 26,
+                        "gender": true,
+                        "major": "MSCS"
+                    }
+                }
+            ]
         },
         {
-            "id": 20,
-            "destination": "Florida",
-            "start_date": "2015-12-10T00:00:00.000Z",
-            "end_date": "2015-12-16T00:00:00.000Z",
-            "fee": 1000,
-            "owner_id": 1
-            "owner": 
-            {
-                "email": "yuany12i@gmail.com",
-                "id": 1,
-                "name": "Yuanyi"
-            }
+            "id": 2,
+            "destination": "Isarel",
+            "start_date": "2015-10-11T00:00:00.000Z",
+            "end_date": "2015-10-31T00:00:00.000Z",
+            "fee": 2000,
+            "owner": {
+                "id": 20,
+                "name": "Yiran Mao",
+                "email": "ym731@nyu.edu",
+                "college": "NYU",
+                "age": 26,
+                "gender": true,
+                "major": "MSCS"
+            },
+            "participants": [
+                {
+                    "user_id": 20,
+                    "trip_id": 2,
+                    "status": true,
+                    "user": {
+                        "id": 20,
+                        "name": "Yiran Mao",
+                        "email": "ym731@nyu.edu",
+                        "college": "NYU",
+                        "age": 26,
+                        "gender": true,
+                        "major": "MSCS"
+                    }
+                }
+            ]
         }
     ],
     "meta": {
@@ -269,24 +313,42 @@ Give the detail information about a single trip.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
     "data": {
-          "id": 1,
-          "destination": "Alaska",
-          "start_date": "2020-10-10T00:00:00.000Z",
-          "end_date": "2020-10-30T00:00:00.000Z",
-          "fee": 2000,
-          "owner_id": 1
-          "owner": {
-                "email": "ym731@nyu.edu",
-     "id": 20,
-     "name": "Yiran Mao"
-           }
-     },
-     "meta": {
+        "id": 1,
+        "destination": "Earth",
+        "start_date": "2014-04-29T04:09:52.422Z",
+        "end_date": "2014-04-29T04:09:52.422Z",
+        "fee": 200,
+        "owner": {
+            "id": 20,
+            "name": "Yiran Mao",
+            "email": "ym731@nyu.edu",
+            "college": "NYU",
+            "age": 26,
+            "gender": true,
+            "major": "MSCS"
+        },
+        "participants": [
+            {
+                "user_id": 20,
+                "trip_id": 1,
+                "status": true,
+                "user": {
+                    "id": 20,
+                    "name": "Yiran Mao",
+                    "email": "ym731@nyu.edu",
+                    "college": "NYU",
+                    "age": 26,
+                    "gender": true,
+                    "major": "MSCS"
+                }
+            }
+        ]
+    },
+    "meta": {
         "status": 200,
         "msg": "OK"
-     }
-}
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    }
+}~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Change trip detail by ID
 
@@ -376,41 +438,69 @@ Get the list of trips information that the user has either initiated or applied
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
     "data": [
-        { //Example for user initiated and joined trip
-            "user_id": 1,
-            "trip_id": 1,
-            "status": true,  //The user has been approved to join, owner of the trip will default be so
-            "trip": {
-                "id": 1,
-                "destination": "Alaska",
-                "start_date": "2020-10-10T00:00:00.000Z",
-                "end_date": "2020-10-30T00:00:00.000Z",
-                "fee": 2000,
-                "owner_id": 1
-                "owner": {
-                          "email": "ym731@nyu.edu",
-               "id": 20,
-               "name": "Yiran Mao"
-                  }
-            }
+        {
+            "id": 1,
+            "destination": "Earth",
+            "start_date": "2014-04-29T04:09:52.422Z",
+            "end_date": "2014-04-29T04:09:52.422Z",
+            "fee": 200,
+            "owner": {
+                "id": 20,
+                "name": "Yiran Mao",
+                "email": "ym731@nyu.edu",
+                "college": "NYU",
+                "age": 26,
+                "gender": true,
+                "major": "MSCS"
+            },
+            "participants": [
+                {
+                    "user_id": 20,
+                    "trip_id": 1,
+                    "status": true,
+                    "user": {
+                        "id": 20,
+                        "name": "Yiran Mao",
+                        "email": "ym731@nyu.edu",
+                        "college": "NYU",
+                        "age": 26,
+                        "gender": true,
+                        "major": "MSCS"
+                    }
+                }
+            ]
         },
-        { //Example for user try to join trip initiated by someone else and yet been approved
-            "user_id": 1,
-            "trip_id": 4,
-            "status": false,  //The user has applied but yet approved
-            "trip": {
-                "id": 4,
-                "destination": "Florida",
-                "start_date": "2014-12-10T00:00:00.000Z",
-                "end_date": "2014-12-16T00:00:00.000Z",
-                "fee": 1000,
-                "owner_id": 2
-                "owner": {
-                          "email": "yuany11i@gmail.com",
-               "id": 2,
-               "name": "Xiaolu"
-                  }
-            }
+        {
+            "id": 2,
+            "destination": "Isarel",
+            "start_date": "2015-10-11T00:00:00.000Z",
+            "end_date": "2015-10-31T00:00:00.000Z",
+            "fee": 2000,
+            "owner": {
+                "id": 20,
+                "name": "Yiran Mao",
+                "email": "ym731@nyu.edu",
+                "college": "NYU",
+                "age": 26,
+                "gender": true,
+                "major": "MSCS"
+            },
+            "participants": [
+                {
+                    "user_id": 20,
+                    "trip_id": 2,
+                    "status": true,
+                    "user": {
+                        "id": 20,
+                        "name": "Yiran Mao",
+                        "email": "ym731@nyu.edu",
+                        "college": "NYU",
+                        "age": 26,
+                        "gender": true,
+                        "major": "MSCS"
+                    }
+                }
+            ]
         }
     ],
     "meta": {
@@ -487,7 +577,7 @@ The owner of the trip approve the application for another user to join the trip
 ### path
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/api/trips/[trip_id]/users/[user_id]/ POST
+/api/trips/[trip_id]/users/[user_id]/ PUT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Parameters

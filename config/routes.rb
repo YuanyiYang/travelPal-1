@@ -1,8 +1,13 @@
 TravelPal::Application.routes.draw do
     namespace :api, defaults: {format: :json} do
-        resources :trips, only: [:index, :create, :show, :update, :destroy, :options]
-        resources :users, only: [:create, :options]
+        resources :trips, only: [:create, :show, :update, :destroy, :options] do
+          resources :users, only: [:update, :destroy], :controller => 'trip_owner'
+        end
+        resources :users, only: [:create, :options] do
+          resources :trips, only: [:index, :update, :destroy], :controller => 'trip_participant'
+        end
         resources :sessions, only: [:create, :destroy, :options]
+        match 'trips/search', to: 'trips#index', via: 'post'
         match 'trips', to: 'trips#index', via: [:options]
         match '/signup', to: 'users#index', via: [:options]
         match '/signin', to: 'sessions#index', via: [:options]
@@ -12,7 +17,6 @@ TravelPal::Application.routes.draw do
         match '/signout', to:'sessions#destroy', via:'delete'
     end
 
-    root 'trips#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
