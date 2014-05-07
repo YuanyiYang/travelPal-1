@@ -1,6 +1,4 @@
 class Api::TripOwnerController < ApplicationController
-    skip_before_filter :verify_authenticity_token
-
     def update
         user = login_user params[:token]
         if !user.nil?

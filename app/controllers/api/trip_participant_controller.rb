@@ -1,6 +1,4 @@
 class Api::TripParticipantController < ApplicationController
-    skip_before_filter :verify_authenticity_token
-
     def index
         user = login_user params[:token]
         if !user.nil?
