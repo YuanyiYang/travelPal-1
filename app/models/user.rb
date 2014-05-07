@@ -5,7 +5,8 @@ class User < ActiveRecord::Base
     has_many :trips_users
     has_many :trips, through: :trips_users
     has_many :trips_owned, :class_name => "Trip", :foreign_key => "owner_id"
-    
+    has_many :chats
+
     has_secure_password
 
     def User.new_remember_token
