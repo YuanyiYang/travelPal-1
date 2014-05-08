@@ -1,6 +1,5 @@
 TravelPal::Application.routes.draw do
     namespace :api, defaults: {format: :json} do
-        match '/*' => 'user#index', via:[:options]
         resources :trips, only: [:create, :show, :update, :destroy, :options] do
           resources :users, only: [:update, :destroy], :controller => 'trip_owner'
           resources :chats, only: [:create]
@@ -9,11 +8,17 @@ TravelPal::Application.routes.draw do
           resources :trips, only: [:index, :update, :destroy], :controller => 'trip_participant'
         end
         resources :sessions, only: [:create, :destroy, :options]
-        match 'trips/search', to: 'trips#index', via: 'post'
-        #match 'trips', to: 'trips#index', via: [:options]
-        #match '/signup', to: 'users#index', via: [:options]
-        #match '/signin', to: 'sessions#index', via: [:options]
-        #match '/signout', to: 'sessions#index', via: [:options]
+        match '/trips/search', to: 'trips#index', via: 'post'
+        match '/signup', to: 'users#index', via: [:options]
+        match '/signin', to: 'sessions#index', via: [:options]
+        match '/signout', to: 'sessions#index', via: [:options]
+        match '/trips', to: 'trips#index', via: [:options]
+        match '/trips/:id', to: 'trips#index', via: [:options]
+        match '/trips/:trip_id/users/:id', to: 'trips#index', via: [:options]
+        match '/trips/:trip_id/chats', to: 'trips#index', via: [:options]
+        match '/trips/search', to: 'trips#index', via: [:options]
+        match '/users/:user_id/trips', to: 'trips#index', via: [:options]
+        match '/users/:user_id/trips/:id', to: 'trips#index', via: [:options]
         match '/signup', to:'users#create', via:'post'
         match '/signin', to:'sessions#create', via:'post'
         match '/signout', to:'sessions#destroy', via:'delete'
