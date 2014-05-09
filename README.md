@@ -19,6 +19,8 @@ The TravelPal API provides the following JSON endpoints:
 
 -   User Logout
 
+-   Get Trips list of latest 10 trips
+
 -   Get Trips list by keyword
 
 -   Get Trips list for certain user_id
@@ -145,6 +147,134 @@ api/signout/ DELETE
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
+    "meta": {
+        "status": 200,
+        "msg": "OK"
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+### Get Trips list by keyword
+
+Get the latest 10 trips information. Only list the trips that has not been asscociated with this user
+
+###### path
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+api/trips GET
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+###### parameters
+
+-   token
+
+###### sample parameters
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{
+    "token":"DPLtSPHlqr5w5wLlQ3-17Q"
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+###### Sample Response(should be 10 trips if available)
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{
+    "data": [
+        {
+            "id": 1,
+            "destination": "Earth",
+            "start_date": "2014-04-29T04:09:52.422Z",
+            "end_date": "2014-04-29T04:09:52.422Z",
+            "fee": 200,
+            "owner": {
+                "id": 20,
+                "name": "Yiran Mao",
+                "email": "ym731@nyu.edu",
+                "college": "NYU",
+                "age": 26,
+                "gender": true,
+                "major": "MSCS"
+            },
+            "participants": [
+                {
+                    "user_id": 20,
+                    "trip_id": 1,
+                    "status": true,
+                    "user": {
+                        "id": 20,
+                        "name": "Yiran Mao",
+                        "email": "ym731@nyu.edu",
+                        "college": "NYU",
+                        "age": 26,
+                        "gender": true,
+                        "major": "MSCS"
+                    }
+                }
+            ],
+            "chats": [
+                {
+	                "content": "Hahaha, I want to play!!",
+	                "created_at": "2014-05-07T14:10:35.564Z",
+	                "user": {
+	                    "id": 20,
+	                    "name": "Yiran Mao",
+	                    "email": "ym731@nyu.edu",
+	                    "college": "NYU",
+	                    "age": 26,
+	                    "gender": true,
+	                    "major": "MSCS"
+	                }
+	            }
+	        ]
+        },
+        {
+            "id": 2,
+            "destination": "Isarel",
+            "start_date": "2015-10-11T00:00:00.000Z",
+            "end_date": "2015-10-31T00:00:00.000Z",
+            "fee": 2000,
+            "owner": {
+                "id": 20,
+                "name": "Yiran Mao",
+                "email": "ym731@nyu.edu",
+                "college": "NYU",
+                "age": 26,
+                "gender": true,
+                "major": "MSCS"
+            },
+            "participants": [
+                {
+                    "user_id": 20,
+                    "trip_id": 2,
+                    "status": true,
+                    "user": {
+                        "id": 20,
+                        "name": "Yiran Mao",
+                        "email": "ym731@nyu.edu",
+                        "college": "NYU",
+                        "age": 26,
+                        "gender": true,
+                        "major": "MSCS"
+                    }
+                }
+            ],
+            "chats": [
+	            {
+	               "content": "Hahaha, I want to play!!",
+	               "created_at": "2014-05-07T14:10:35.564Z",
+	               "user": {
+	                   "id": 20,
+	                   "name": "Yiran Mao",
+	                   "email": "ym731@nyu.edu",
+	                   "college": "NYU",
+	                   "age": 26,
+	                   "gender": true,
+	                   "major": "MSCS"
+	                }
+	            }
+	        ]
+	   }
+    ],
     "meta": {
         "status": 200,
         "msg": "OK"
