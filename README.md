@@ -153,7 +153,7 @@ api/signout/ DELETE
     }
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-### Get Trips list by keyword
+### Get Latest Trips list (Top trips?)
 
 Get the latest 10 trips information. Only list the trips that has not been asscociated with this user
 
