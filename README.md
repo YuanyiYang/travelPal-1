@@ -591,7 +591,7 @@ User apply to join a trip that interest him/her
 ### path
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-/api/users/[user_id]/trips/[trip_id] POST
+/api/users/[user_id]/trips/[trip_id] PUT
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Parameters
