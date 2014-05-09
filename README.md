@@ -848,14 +848,14 @@ The owner of the trip approve the application for another user to join the trip
 
 ### Parameters
 
--   chats: {content:string}
+-   chat: {content:string}
 
 -   token
 
 ###### sample parameters
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-{"chats":{ "content":"Hi Xiaolu, your trip seems interesting, can you talk a little bit more about your plan?" }, "token":"94ZcE8Otc1Ed_j_85rJ_mw" }
+{"chat":{ "content":"Hi Xiaolu, your trip seems interesting, can you talk a little bit more about your plan?" }, "token":"94ZcE8Otc1Ed_j_85rJ_mw" }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 ### Sample Response
