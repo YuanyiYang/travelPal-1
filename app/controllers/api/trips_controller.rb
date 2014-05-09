@@ -3,9 +3,10 @@ class Api::TripsController < ApplicationController
         user = login_user params[:token]
         if !user.nil?
           if !user.trips.empty?
-            trips = Trip.where('id not in (?)', user.trips.ids)
+            trips = Trip.where('id not in (?)', user.trips.ids).last(10)
+          else
+            trips = Trip.last(10)
           end
-          trips = trips.last(10)
           render json: trips, root:"data", meta:{status: 200, msg:"OK"}
         else
           render json: {meta:{status: 401, msg:"user not logged in"}}
