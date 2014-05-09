@@ -8,7 +8,7 @@ TravelPal::Application.routes.draw do
           resources :trips, only: [:index, :update, :destroy], :controller => 'trip_participant'
         end
         resources :sessions, only: [:create, :destroy, :options]
-        match '/trips/search', to: 'trips#index', via: 'post'
+        match '/trips/search', to: 'trips#search', via: 'post'
         match '/signup', to: 'users#index', via: [:options]
         match '/signin', to: 'sessions#index', via: [:options]
         match '/signout', to: 'sessions#index', via: [:options]

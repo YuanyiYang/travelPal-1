@@ -2,11 +2,7 @@ class Api::TripsController < ApplicationController
     def index
         user = login_user params[:token]
         if !user.nil?
-          if trip_keywords?
-            trips = Trip.where('id not in (?)', user.trips.ids).where(trip_keywords)
-          else
-            trips = Trip.where('id not in (?)', user.trips.ids).last(10)
-          end
+          trips = Trip.where('id not in (?)', user.trips.ids).last(10)
           render json: trips, root:"data", meta:{status: 200, msg:"OK"}
         else
           render json: {meta:{status: 401, msg:"user not logged in"}}
@@ -66,6 +62,18 @@ class Api::TripsController < ApplicationController
         else
             render json: {meta:{status: 401, msg:"user not logged in"}}
         end
+    end
+
+    def search
+        user = login_user params[:token]
+        if !user.nil?
+          trips = Trip.where('id not in (?)', user.trips.ids).where(trip_keywords)
+          render json: trips, root:"data", meta:{status: 200, msg:"OK"}
+        else
+          render json: {meta:{status: 401, msg:"user not logged in"}}
+        end
+          #@trips = @user.trips_owned
+          #@user = @trip.owner
     end
 
     private
