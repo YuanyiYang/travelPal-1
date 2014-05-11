@@ -2,7 +2,7 @@ TravelPal::Application.routes.draw do
     namespace :api, defaults: {format: :json} do
         resources :trips, only: [:index, :create, :show, :update, :destroy, :options] do
           resources :users, only: [:update, :destroy], :controller => 'trip_owner'
-          resources :chats, only: [:create]
+          resources :chats, only: [:index, :create]
         end
         resources :users, only: [:create, :options] do
           resources :trips, only: [:index, :update, :destroy], :controller => 'trip_participant'
