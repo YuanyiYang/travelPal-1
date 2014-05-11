@@ -210,22 +210,7 @@ api/trips GET
                         "major": "MSCS"
                     }
                 }
-            ],
-            "chats": [
-                {
-	                "content": "Hahaha, I want to play!!",
-	                "created_at": "2014-05-07T14:10:35.564Z",
-	                "user": {
-	                    "id": 20,
-	                    "name": "Yiran Mao",
-	                    "email": "ym731@nyu.edu",
-	                    "college": "NYU",
-	                    "age": 26,
-	                    "gender": true,
-	                    "major": "MSCS"
-	                }
-	            }
-	        ]
+            ]
         },
         {
             "id": 2,
@@ -257,22 +242,7 @@ api/trips GET
                         "major": "MSCS"
                     }
                 }
-            ],
-            "chats": [
-	            {
-	               "content": "Hahaha, I want to play!!",
-	               "created_at": "2014-05-07T14:10:35.564Z",
-	               "user": {
-	                   "id": 20,
-	                   "name": "Yiran Mao",
-	                   "email": "ym731@nyu.edu",
-	                   "college": "NYU",
-	                   "age": 26,
-	                   "gender": true,
-	                   "major": "MSCS"
-	                }
-	            }
-	        ]
+            ]
 	   }
     ],
     "meta": {
@@ -344,22 +314,7 @@ api/trips/search POST
                         "major": "MSCS"
                     }
                 }
-            ],
-            "chats": [
-                {
-	                "content": "Hahaha, I want to play!!",
-	                "created_at": "2014-05-07T14:10:35.564Z",
-	                "user": {
-	                    "id": 20,
-	                    "name": "Yiran Mao",
-	                    "email": "ym731@nyu.edu",
-	                    "college": "NYU",
-	                    "age": 26,
-	                    "gender": true,
-	                    "major": "MSCS"
-	                }
-	            }
-	        ]
+            ]
         },
         {
             "id": 2,
@@ -391,22 +346,7 @@ api/trips/search POST
                         "major": "MSCS"
                     }
                 }
-            ],
-            "chats": [
-	            {
-	               "content": "Hahaha, I want to play!!",
-	               "created_at": "2014-05-07T14:10:35.564Z",
-	               "user": {
-	                   "id": 20,
-	                   "name": "Yiran Mao",
-	                   "email": "ym731@nyu.edu",
-	                   "college": "NYU",
-	                   "age": 26,
-	                   "gender": true,
-	                   "major": "MSCS"
-	                }
-	            }
-	        ]
+            ]
 	   }
     ],
     "meta": {
@@ -492,21 +432,6 @@ Give the detail information about a single trip.
                 "user_id": 20,
                 "trip_id": 1,
                 "status": true,
-                "user": {
-                    "id": 20,
-                    "name": "Yiran Mao",
-                    "email": "ym731@nyu.edu",
-                    "college": "NYU",
-                    "age": 26,
-                    "gender": true,
-                    "major": "MSCS"
-                }
-            }
-        ],
-        "chats": [
-            {
-                "content": "Hahaha, I want to play!!",
-                "created_at": "2014-05-07T14:10:35.564Z",
                 "user": {
                     "id": 20,
                     "name": "Yiran Mao",
@@ -644,22 +569,7 @@ Get the list of trips information that the user has either initiated or applied
                         "major": "MSCS"
                     }
                 }
-            ],
-            "chats": [
-	            {
-	                "content": "Hahaha, I want to play!!",
-	                "created_at": "2014-05-07T14:10:35.564Z",
-	                "user": {
-	                    "id": 20,
-	                    "name": "Yiran Mao",
-	                    "email": "ym731@nyu.edu",
-	                    "college": "NYU",
-	                    "age": 26,
-	                    "gender": true,
-	                    "major": "MSCS"
-	                }
-	            }
-	        ]
+            ]
         },
         {
             "id": 2,
@@ -691,22 +601,7 @@ Get the list of trips information that the user has either initiated or applied
                         "major": "MSCS"
                     }
                 }
-            ],
-            "chats": [
-	            {
-	                "content": "Hahaha, I want to play!!",
-	                "created_at": "2014-05-07T14:10:35.564Z",
-	                "user": {
-	                    "id": 20,
-	                    "name": "Yiran Mao",
-	                    "email": "ym731@nyu.edu",
-	                    "college": "NYU",
-	                    "age": 26,
-	                    "gender": true,
-	                    "major": "MSCS"
-	                }
-	            }
-	        ]
+            ]
         }
     ],
     "meta": {
@@ -837,8 +732,81 @@ The owner of the trip decline the application for another user to join the trip
 }
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+### Get message by Trip ID
+Get all chats associate with this trip ID
+
+### path
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/api/trips/[trip_id]/chats GET
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### Parameters
+
+-   token
+
+###### sample parameters
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{"token":"94ZcE8Otc1Ed_j_85rJ_mw" }
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+### Sample Response
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{
+    "data": {
+            "chats": [
+	            {
+	                "content": "Hahaha, I want to play!!",
+	                "created_at": "2014-05-07T14:10:35.564Z",
+	                "user": {
+	                    "id": 20,
+	                    "name": "Yiran Mao",
+	                    "email": "ym731@nyu.edu",
+	                    "college": "NYU",
+	                    "age": 26,
+	                    "gender": true,
+	                    "major": "MSCS"
+	                }
+	            },
+	            	 {
+	                "content": "Hahaha, I want to play!!",
+	                "created_at": "2014-05-07T14:10:35.564Z",
+	                "user": {
+	                    "id": 20,
+	                    "name": "Yiran Mao",
+	                    "email": "ym731@nyu.edu",
+	                    "college": "NYU",
+	                    "age": 26,
+	                    "gender": true,
+	                    "major": "MSCS"
+	                }
+	            },
+	             {
+	                "content": "Hahaha, I want to play!!",
+	                "created_at": "2014-05-07T14:10:35.564Z",
+	                "user": {
+	                    "id": 20,
+	                    "name": "Yiran Mao",
+	                    "email": "ym731@nyu.edu",
+	                    "college": "NYU",
+	                    "age": 26,
+	                    "gender": true,
+	                    "major": "MSCS"
+	                }
+	            }    
+	        ]    }
+    "meta": {
+        "status": 200,
+        "msg": "OK"
+    }
+}
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 ### Post message by Trip ID
-The owner of the trip approve the application for another user to join the trip
+Post a chat message under certain Trip ID
 
 ### path
 
@@ -862,6 +830,22 @@ The owner of the trip approve the application for another user to join the trip
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 {
+    "data": {
+            "chats": [
+	            {
+	                "content": "Hahaha, I want to play!!",
+	                "created_at": "2014-05-07T14:10:35.564Z",
+	                "user": {
+	                    "id": 20,
+	                    "name": "Yiran Mao",
+	                    "email": "ym731@nyu.edu",
+	                    "college": "NYU",
+	                    "age": 26,
+	                    "gender": true,
+	                    "major": "MSCS"
+	                }
+	            }
+	        ]    }
     "meta": {
         "status": 200,
         "msg": "OK"
