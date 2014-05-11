@@ -4,7 +4,7 @@ class Api::ChatsController < ApplicationController
         if !user.nil? 
           	chat = Chat.new(content: params[:chat][:content], trip_id: params[:trip_id], user_id: user.id)
 	        if chat.save
-	         	render json: {meta:{status: 200, msg:"OK"}}
+	         	render json: chat, root:"data", meta:{status: 200, msg:"OK"}
 	        else    
 	            render json: {meta:{status: 404, msg:"create failed"}}
 	        end
